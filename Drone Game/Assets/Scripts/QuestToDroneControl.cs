@@ -11,7 +11,10 @@ public class QuestToDroneControl : MonoBehaviour
     private bool m_grabbing {
         get
         {
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+            // PC testing edit
+            if (Input.GetKeyDown("Space")) return true;
+
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
             {
                 return true;
             }
