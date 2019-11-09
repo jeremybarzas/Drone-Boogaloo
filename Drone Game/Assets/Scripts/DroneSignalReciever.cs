@@ -11,7 +11,7 @@ public class DroneSignalReciever : MonoBehaviour
     [SerializeField]List<SignalTransmitter> m_inRangeTransmitters;
 
     public bool HasSignal => (HasSignal);
-    public SignalTransmitter CloseestTransmitter => (m_closetTransmitter);
+    public SignalTransmitter ClosestTransmitter => (m_closetTransmitter);
 
     private void Awake()
     {
@@ -29,9 +29,9 @@ public class DroneSignalReciever : MonoBehaviour
             m_hasSignal = true;
 
         if (!m_hasSignal)
-            GetComponentInParent<TestDroneMovment>().enabled = false;
+            GetComponentInParent<TestDroneMovement>().enabled = false;
         else
-            GetComponentInParent<TestDroneMovment>().enabled = true;
+            GetComponentInParent<TestDroneMovement>().enabled = true;
 
         CheckSignalStrength();
     }

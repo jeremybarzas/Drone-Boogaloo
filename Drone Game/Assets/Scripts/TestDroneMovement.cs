@@ -2,24 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestDroneMovment : MonoBehaviour
-{
-    bool hasSignal = false;
+public class TestDroneMovement : MonoBehaviour
+{    
     public float m_moveSpeed = 1;
     public float m_turnSpeed = 1;
-
-    private void Awake()
-    {
-        hasSignal = false;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+  
     void Update()
     {
         float inputY = Input.GetAxis("Vertical");
