@@ -12,13 +12,10 @@ public class TestDroneMovement : MonoBehaviour
     void Update()
     {
         Vector3 rot = m_rotationToInput.InputValues;
-        //+0.7071068f
+        
         var moveZ = rot.z;
         var moveY = rot.x;
-
-        //Debug.Log("Translate Z by: " + moveZ.ToString());
-        //Debug.Log("Rotate Y by: " + moveY.ToString());
-        //Debug.Log("SANITY CHECK");
+        
         Vector3 move = new Vector3(0, 0, moveZ);
         Vector3 turn = new Vector3(0, moveY, 0);
 

@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class RotationToInput : MonoBehaviour
 {
-    Transform m_reference;
-
-    float clampAngle;
+    Transform m_referenceTransform;
 
     [SerializeField]Vector3 inputValue;
 
     public Vector3 InputValues => (inputValue);
 
     private void Awake()
-    {
-        
-        if (m_reference == null)
-        {
-            m_reference = transform;
-            
-        }
+    {        
+        if (m_referenceTransform == null) 
+            m_referenceTransform = transform;
     }
 
     void Update()
     {
         GetInput();
     }
+
     public void GetInput()
-    {
-  
+    {  
         Vector3 rotationDelta = transform.forward - Vector3.up;
         inputValue = rotationDelta * Time.deltaTime;
     }
