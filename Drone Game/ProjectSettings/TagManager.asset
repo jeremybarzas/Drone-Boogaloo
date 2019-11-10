@@ -9,6 +9,7 @@ TagManager:
   - DroneReciever
   - Joystick
   - Controller
+  - PowerChip
   layers:
   - Default
   - TransparentFX
