@@ -7,12 +7,16 @@ public class QuestToDroneControl : MonoBehaviour
     public float m_handpower = 10;
     public float m_lockDown = 45;
     private Vector3 m_lastPostion;
+    public Transform testTransform;
 
     private bool m_grabbing {
         get
         {
             // PC testing edit
-            if (Input.GetKeyDown("Space")) return true;
+            if (Input.GetKeyDown(KeyCode.Space))
+                return true;
+            else if (Input.GetKeyUp(KeyCode.Space))
+                return false;
 
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
             {
@@ -23,6 +27,11 @@ public class QuestToDroneControl : MonoBehaviour
                 return false;
             }
         }
+    }
+
+    private void Update()
+    {
+        transform.LookAt(testTransform);
     }
 
     private void OnTriggerStay(Collider other)
@@ -37,5 +46,4 @@ public class QuestToDroneControl : MonoBehaviour
             transform.eulerAngles = new Vector3(Mathf.Clamp(dist.x, -m_lockDown, m_lockDown), 0, Mathf.Clamp(dist.z, -m_lockDown, m_lockDown));
         }
     }
-
 }
