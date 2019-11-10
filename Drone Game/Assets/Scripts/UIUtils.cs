@@ -8,6 +8,33 @@ using Random = UnityEngine.Random;
 
 public class UIUtils : MonoBehaviour
 {
+    private static Transform m_playerTransform;
+
+    public void RotateDoor(Transform t)
+    {
+        t.Rotate(0, 180, 0);
+    }
+
+    public void MoveToGarage(Transform t)
+    {
+        t.localPosition = new Vector3(t.localPosition.x, -10.5f, t.localPosition.z);
+    }
+
+    public void MoveToCommand(Transform t)
+    {
+        t.localPosition = new Vector3(t.localPosition.x, 0.5f, t.localPosition.z);
+    }
+
+    public void TeleportPlayer(Transform t)
+    {
+        if(m_playerTransform == null)
+        {
+            m_playerTransform = FindObjectOfType<OVRManager>().transform;
+        }
+
+        m_playerTransform.position = t.position;
+    }
+
     private IEnumerator WaitForAnimator(Animator a){
         
         yield return new WaitUntil(() => a.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
