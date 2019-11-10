@@ -98,7 +98,7 @@ public class InteractableObject : MonoBehaviour
     }
 
     [ContextMenu("On Interact")]
-    private void OnContextMenu()
+    public void OnContextMenu()
     {
         m_onInteract.Invoke();
     }
