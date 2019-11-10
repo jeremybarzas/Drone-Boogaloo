@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabJoystick : MonoBehaviour
-{   
+{
+    [SerializeField] Transform m_anchorTransform;
     [SerializeField] Transform m_defaultTransform;
     [SerializeField] Transform m_referenceTransform;
 
@@ -17,35 +18,32 @@ public class GrabJoystick : MonoBehaviour
         get
         {
             // PC testing edit
-            if (Input.GetKey(KeyCode.Space))
-                return true;
-            else
-                return false;
+            //if (Input.GetKey(KeyCode.Space))
+            //    return true;
+            //else
+            //    return false;
 
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
-            {
+            while (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
+            {               
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 
     private void Update()
     {
         if (m_grabbing)
-            transform.LookAt(m_referenceTransform);
+            m_anchorTransform.LookAt(m_referenceTransform);
         else
-            transform.LookAt(m_defaultTransform);
+            m_anchorTransform.LookAt(m_defaultTransform);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Controller")) return;
+        if (!other.CompareTag("Controller")) return;    
 
-        var hand = other.gameObject.GetComponent<OVRControllerHelper>();
+        var hand = other.gameObject.transform;
         if (hand == null) { return; }
 
         m_referenceTransform = hand.transform;
@@ -54,7 +52,7 @@ public class GrabJoystick : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Controller")) return;
-
+        Debug.Log("Controller leaving me");
         m_referenceTransform = m_defaultTransform;
     }
 }

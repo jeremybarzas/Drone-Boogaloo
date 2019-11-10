@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerChipSocket : MonoBehaviour
+public class HoldObject : MonoBehaviour
 {
-    [SerializeField] GameObject m_powerChip;
-    [SerializeField] SignalTransmitter m_signalTransmitter;
+    public GameObject m_heldObject;
+    public GameObject prefab;
 
     private bool m_grabbing
     {
@@ -25,19 +25,12 @@ public class PowerChipSocket : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (m_powerChip == null)
-            m_signalTransmitter.PowerOff();
-        else
-            m_signalTransmitter.PowerOn();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Chip")) return;
-
-        m_powerChip.SetActive(true);
-        other.gameObject.SetActive(false);
+        if (m_grabbing)
+        {            
+            other.transform.parent = transform;            
+        }   
     }
 }
