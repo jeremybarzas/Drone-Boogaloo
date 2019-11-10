@@ -10,6 +10,7 @@ TagManager:
   - Joystick
   - Controller
   - PowerChip
+  - Chip
   layers:
   - Default
   - TransparentFX

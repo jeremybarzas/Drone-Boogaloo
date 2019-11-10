@@ -11,6 +11,8 @@ public class SignalTransmitter : MonoBehaviour
     [SerializeField] DroneSignalReciever m_droneReciever;
     [SerializeField]  float m_signalStrength;
 
+    public GameObject debugSphere;
+
     public float SignalStength => (m_signalStrength);
     public bool IsPowered => (m_isPowered);
 
@@ -26,6 +28,11 @@ public class SignalTransmitter : MonoBehaviour
 
     private void Update()
     {
+        if (!m_isPowered)
+            debugSphere.SetActive(false);
+        else
+            debugSphere.SetActive(true);
+
         if (!isTransmitting && m_signalArea.enabled)
             m_signalArea.enabled = false;
         if (isTransmitting && !m_signalArea.enabled)
