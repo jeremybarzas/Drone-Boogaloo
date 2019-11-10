@@ -8,7 +8,7 @@ public class SignalTransmitter : MonoBehaviour
     SphereCollider m_signalArea;
     [SerializeField] bool isTransmitting;
     [SerializeField] DroneSignalReciever m_droneReciever;
-    float m_signalStrength;
+    [SerializeField]  float m_signalStrength;
 
     public float SignalStength => (m_signalStrength);
 
